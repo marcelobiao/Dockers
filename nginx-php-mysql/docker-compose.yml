@@ -1,18 +1,18 @@
 web:
   image: nginx:latest
-  container_name: nginx
+  container_name: nginx_proj
   restart: always
   ports:
     - 8080:80
   volumes:
     - ./www:/www
-    - ./site.conf:/etc/nginx/conf.d/site.conf
+    - ./config/nginx/site.conf:/etc/nginx/conf.d/site.conf
   links:
     - php
 
 php:
-  image: php:7.3-fpm
-  container_name: php-fpm
+  build: ./config/php/
+  container_name: php-fpm_proj
   volumes:
     - ./www:/www
   links:
@@ -20,7 +20,7 @@ php:
 
 db:
   image: mysql:5.7
-  container_name: mysql
+  container_name: mysql_proj
   ports:
     - 3306:3306
   command: --default-authentication-plugin=mysql_native_password
