@@ -27,6 +27,6 @@ db:
   restart: always
   environment:
     MYSQL_ROOT_PASSWORD: root
-    MYSQL_DATABASE: sismederi
+    MYSQL_DATABASE: db_name
   volumes:
     - ./mysql/db/data:/var/lib/mysql
